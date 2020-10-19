@@ -1,0 +1,21 @@
+{
+  "name": "dc-stp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-plugin-inliner": "^1.0.14"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "posthtml": "^0.13.3",
+    "posthtml-inline-assets": "^3.1.0"
+  }
+}

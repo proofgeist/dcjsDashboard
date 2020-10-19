@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.15/d3.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.4.7/crossfilter.min.js" integrity="sha256-uzsb4661qT8a2H5HIwdeGofsQu6EkVHOyZCnx1Ndg+E=" crossorigin="anonymous"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0-beta.26/dc.min.js"></script> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0/dc.min.js" integrity="sha512-l2FNR7xWgyG0mftlQKKRwRYQ86W15c4KigmAFplZkUVU8GWu0OgmZm7b0j48fhhSS0mb4bXvDUF28yFKjCbH6g==" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0/dc.css" integrity="sha512-ExOMA2nYBli5ErrK6k4SEV4AAuPZSTQg6mahy1/AvAwzjGs7uB8coEsN/MF/DRuVZEJP5EBcnyemYSGfh0bWMw==" crossorigin="anonymous">
+         <!-- <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/dc/3.0.12/dc.css"
+         /> -->
+    <style>.dc-chart g.row text {fill: black;}
+  #overview .axis y {
+    font-size: 20px;
+        display:none
+      }</style>
+   <script src="/utils.add54b87.js"></script>
+  </head>
+
+  <body class="bg-light">
+  <div class="card-group">
+      <div class="card m-1">
+        <div class="card-body" id="overview">
+           <h5 class="card-title">
+            Overview
+            </h5>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row"> <button class="col text center" id="showPrev">Show Previous</button></div> -->
+      <!-- <div class="card-group">
+      <div class="card m-1">
+        <div class="card-body" id="chartYear">
+          <h5 class="card-title">
+            Year Count
+            <span
+              ><a
+                class="reset"
+                style="display: none"
+                href="javascript: chartMonth.filterAll(); dc.redrawAll();"
+                >reset</a
+              ></span
+            >
+          </h5>
+        </div>
+      </div>
+ 
+      <div class="card m-1">
+        <div class="card-body" id="chartMonth">
+          <h5 class="card-title">
+            Month Count
+            <span
+              ><a
+                class="reset"
+                style="display: none"
+                href="javascript: chartMonth.filterAll(); dc.redrawAll();"
+                >reset</a
+              ></span
+            >
+          </h5>
+        </div>
+      </div>
+    </div> -->
+         <div class="card-group">
+      <div class="card m-1">
+        <div class="card-body" id="overview">
+          <h5 class="card-title">
+            Year Count
+            <span><a class="reset" style="display: none" href="javascript: overViewChart.filterAll(); dc.redrawAll();">reset</a></span>
+          </h5>
+         
+        </div>
+      </div>
+ 
+     
+    </div>
+    
+    <div class="card-group">
+      <div class="card m-1">
+        <div class="card-body" id="chartCallsByType">
+          <h5 class="card-title">
+            Total Calls by Type Overall
+            <span><a class="reset" style="display: none" href="javascript: chartCallsByType.filterAll(); dc.redrawAll();">reset</a></span>
+          </h5>
+        </div>
+      </div>
+          <div class="card m-1">
+        <div class="card-body" id="chartCallsByDepartment">
+          <h5 class="card-title">
+            Total Calls by Department
+            <span><a class="reset" style="display: none" href="javascript: chartCallsByDepartment.filterAll(); dc.redrawAll();">reset</a></span>
+          </h5>
+        </div>
+      </div>
+      <div class="card m-1">
+        <div class="card-body" id="chartCallsByPerson">
+          <h5 class="card-title">
+            Total Calls by Person Overall
+            <span><a class="reset" style="display: none" href="javascript: chartCallsByPerson.filterAll(); dc.redrawAll();">reset</a></span>
+          </h5>
+        </div>
+      </div>
+     
+    </div>
+ 
+    
+     <!-- <script src="utils.js"></script>  -->
+ <script src="/Project.e31bb0bc.js"></script>
+
+  </body>
+</html>
+

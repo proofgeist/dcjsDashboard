@@ -1,0 +1,21 @@
+{
+   "key":"Comp",
+   "value":{
+      "current":{
+         "Service":474,
+         "Retail":1,
+         "Repair":77,
+         "Remodel":12,
+         "Construction":22
+      },
+      "previous":{
+         "Service":560,
+         "Retail":3,
+         "Repair":168,
+         "Remodel":23,
+         "Pool Sales":1,
+         "Construction":30
+      },
+      "year":2019
+   }
+}

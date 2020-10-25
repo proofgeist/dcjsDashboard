@@ -6,13 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+      "upload": "node ./scripts/loadFinal",
+    "build:upload": "npm run build && npm run upload",
+    "openfile": "node ./scripts/openFileOnServer"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "d3-scale-chromatic": "^2.0.0",
-    "parcel-plugin-inliner": "^1.0.14"
+    "open": "^7.3.0",
+    "parcel-plugin-inliner": "^1.0.14",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",

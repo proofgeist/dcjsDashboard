@@ -92,7 +92,6 @@ function setIntoYears(sourceGroup) {
 window.loadData = function (json) {
   //Reduce functions
   function reducePeriodAdd(i, d) {
-    // console.log(d.Year);
     if (d.Year === 2020) {
       ++i.current;
     } else {
@@ -138,9 +137,6 @@ window.loadData = function (json) {
     return { current: {}, previous: {} };
   }
 
-  function getUniqueDepts(value, index, self) {
-    return self.indexOf(value) === index;
-  }
   //Set variables
   var currentYr = new Date().getFullYear();
   var previousYr = currentYr - 1;
@@ -148,14 +144,14 @@ window.loadData = function (json) {
   var previousColor = "green";
   //Configure data
   var data = JSON.parse(json);
-
   data.forEach(function (d, i) {
     var theDate = d.fieldData.CreationTimestamp;
     var currDate = new Date(theDate);
-    // console.log(currDate);
     d.Date = currDate;
     d.Year = d.Date.getFullYear();
-    d.Type = typeCodes[d.fieldData.Call_Log_Type].split(" ").join("");
+    d.Type = d.fieldData.TypeCode
+      ? d.fieldData.TypeCode
+      : d.fieldData.Call_Log_Type;
     d.Dept = d.fieldData.Call_Log_Department;
     d.Day = dayFormat(currDate);
     d.Month = currDate.getMonth();
@@ -163,6 +159,10 @@ window.loadData = function (json) {
 
   var facts = crossfilter(data);
   //Get unique departments
+  function getUniqueDepts(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
   var depts = data
     .map(function (d) {
       return d.fieldData.Call_Log_Department;
@@ -200,10 +200,10 @@ window.loadData = function (json) {
     .reduce(typeAdd, typeRemove, typeInitial);
   //TYPE DIMENSION
   var typeDim = facts.dimension(function (d) {
-    return d.fieldData.Call_Log_Type;
+    return d.fieldData.Type;
   });
   var typeGroup = typeDim.group().reduceCount(function (d) {
-    return d.Call_Log_Type;
+    return d.Type;
   });
 
   //PERSON DIMENSION
@@ -241,7 +241,8 @@ window.loadData = function (json) {
   );
   window.chartDeptByPersonCurrent = dc.barChart(chartDeptByPersonTwoYears);
   window.chartDeptByPersonPrevious = dc.barChart(chartDeptByPersonTwoYears);
-  console.log(document.querySelector("#chartDeptByTypeTwoYears").clientWidth);
+  var screenWidth = document.querySelector("#chartDeptByTypeTwoYears")
+    .clientWidth;
   function sel_stack(i, state) {
     return function (d) {
       return d.value[state][i] || 0;
@@ -293,7 +294,7 @@ window.loadData = function (json) {
       );
     })
     .centerBar(true)
-    .ordinalColors(d3.schemeGreens[7])
+    .colors(d3.scaleOrdinal(d3.schemeGreens[lengthDepts]))
     .elasticX(true)
 
     .group(deptByTypeGroup, depts[0], sel_stack(depts[0], "previous"));
@@ -313,14 +314,15 @@ window.loadData = function (json) {
     .legend(
       dc
         .legend()
-        .x(1000)
+        .x(screenWidth - (90 * lengthDepts + 12))
         .y(0)
-        .autoItemWidth(true)
+        .legendWidth(90 * lengthDepts)
         .itemHeight(10)
-        .itemWidth(100)
-        .gap(5)
+        .itemWidth(80)
+        .gap(12)
         .horizontal(true)
     )
+
     ._rangeBandPadding(4)
     .x(d3.scaleBand())
     .xUnits(dc.units.ordinal)
@@ -369,7 +371,7 @@ window.loadData = function (json) {
 
   chartDeptByPersonPrevious
 
-    .ordinalColors(d3.schemeGreens[7])
+    .ordinalColors(d3.schemeGreens[lengthDepts])
     .centerBar(true)
 
     .title(function (d) {
@@ -399,12 +401,12 @@ window.loadData = function (json) {
     .legend(
       dc
         .legend()
-        .x(1000)
+        .x(screenWidth - (90 * lengthDepts + 20))
         .y(0)
-        .autoItemWidth(true)
+        .legendWidth(90 * lengthDepts)
         .itemHeight(10)
-        .itemWidth(100)
-        .gap(5)
+        .itemWidth(80)
+        .gap(20)
         .horizontal(true)
     )
     ._rangeBandPadding(4)
@@ -492,7 +494,6 @@ window.loadData = function (json) {
     .ordinalColors(d3.schemePaired)
     .legend(
       dc.legend().legendText(function (d) {
-        // console.log(d);
         return d.name + " || " + numFormat(d.data);
       })
     )
@@ -522,7 +523,6 @@ window.loadData = function (json) {
     .ordinalColors(d3.schemeTableau10)
     .legend(
       dc.legend().legendText(function (d) {
-        // console.log(d);
         return d.name + " || " + numFormat(d.data);
       })
     )

@@ -1,0 +1,6 @@
+﻿Timestamp	Filename	Error	Message
+2020-10-23 10:18:29.011 -0400	STP Dashboard.fmp12	0	Import of script steps from clipboard started
+2020-10-23 10:18:29.015 -0400	UploadHTML::33::Go to Layout	105	Layout “ActivityTimeline Config” missing.
+2020-10-23 10:18:29.015 -0400	UploadHTML::35::Read from Data File	102	Field “HTML” missing.
+2020-10-23 10:18:29.016 -0400	UploadHTML	0	script steps imported : 37
+2020-10-23 10:18:29.016 -0400	STP Dashboard.fmp12	0	Import completed
